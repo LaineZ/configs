@@ -1,0 +1,75 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    //"width": 1280, // Waybar width
+    //"spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces",  "hyprland/window"],
+    "modules-right": ["custom/gpu_usage", "cpu", "custom/tctl", "memory", "disk", "network", "pulseaudio", "custom/clock", "tray"],
+    "hyprland/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "hyprland/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", "SCRATHPAD"],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+     "tray": {
+        "spacing": 8
+    },
+    "custom/clock": {
+        "exec": "date +\"%Y-%m-%d %H:%M:%S\"",
+        "interval": 1
+    },
+    "custom/tctl": {
+        "exec": "/home/bpm140/.config/waybar/scripts/cpu_temperature.fish",
+        "interval": 2    
+    },
+    "custom/gpu_vram": {
+        "exec": "/home/bpm140/.config/waybar/scripts/gpu_vram_usage.fish",
+        "interval": 5
+    },
+    "custom/gpu_usage": {
+        "exec": "/home/bpm140/.config/waybar/scripts/gpu_usage.fish",
+        "interval": 5
+    },
+    "disk": {
+       "interval": 30,
+       "format": "<span color='#fabd2f'> {path}</span> {percentage_used}%",
+       "path": "/"
+    },
+    "cpu": {
+        "format": "<span color='#fabd2f'></span> {usage}%",
+	    "tooltip": true,
+	    "interval": 1
+    },
+    "memory": {
+        "format": "<span color='#fabd2f'></span> {}%",
+	    "interval": 1
+    },
+    "network": {
+        "format-wifi": "<span color='#fabd2f'> </span>{signalStrength}%",
+        "format-ethernet": "<span color='#fabd2f'></span>",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠ {ifname}",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "interval": 2
+    },
+    "pulseaudio": {
+        "scroll-step": 1, // %, can be a float
+        "format": "<span color='#fabd2f'></span> {volume}%",
+        "format-bluetooth": "<span color='#fabd2f'></span> {volume}%",
+        "format-bluetooth-muted": "<span color='#fb4934'>MUTED",
+        "format-muted": "{format_source}",
+        "format-source": "{volume}%",
+        "format-source-muted": "<span color='#fb4934'></span>",
+        "on-click": "pavucontrol",
+        "on-click-right": "xfce4-terminal pw-top"
+    },
+}
+
+
